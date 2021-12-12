@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_size_number">43sp</dimen>
+    <dimen name="button_text_size">27sp</dimen>
+    <dimen name="button_text_height">75dp</dimen>
+    <dimen name="button_margin">2dp</dimen>
+    <dimen name="margin_row">-2dp</dimen>
+    <!--    <dimen name="button_number_column">4</dimen>-->
+</resources>
