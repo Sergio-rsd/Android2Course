@@ -68,6 +68,7 @@
                 android:layout_marginRight="@dimen/button_margin"
                 android:layout_weight="4"
                 android:backgroundTint="@color/btn_red_clear"
+                android:textStyle="bold"
                 android:text="@string/button_clear"
                 android:textSize="@dimen/button_text_size" />
         </LinearLayout>
@@ -138,6 +139,7 @@
                 android:layout_marginRight="@dimen/button_margin"
                 android:layout_weight="4"
                 android:backgroundTint="@color/btn_number"
+                android:textStyle="bold"
                 android:text="@string/button_7"
                 android:textSize="@dimen/button_size_number" />
 
@@ -149,6 +151,7 @@
                 android:layout_marginRight="@dimen/button_margin"
                 android:layout_weight="4"
                 android:backgroundTint="@color/btn_number"
+                android:textStyle="bold"
                 android:text="@string/button_8"
                 android:textSize="@dimen/button_size_number" />
 
@@ -160,6 +163,7 @@
                 android:layout_marginRight="@dimen/button_margin"
                 android:layout_weight="4"
                 android:backgroundTint="@color/btn_number"
+                android:textStyle="bold"
                 android:text="@string/button_9"
                 android:textSize="@dimen/button_size_number" />
 
@@ -190,6 +194,7 @@
                 android:layout_marginRight="@dimen/button_margin"
                 android:layout_weight="4"
                 android:backgroundTint="@color/btn_number"
+                android:textStyle="bold"
                 android:text="@string/button_4"
                 android:textSize="@dimen/button_size_number" />
 
@@ -201,6 +206,7 @@
                 android:layout_marginRight="@dimen/button_margin"
                 android:layout_weight="4"
                 android:backgroundTint="@color/btn_number"
+                android:textStyle="bold"
                 android:text="@string/button_5"
                 android:textSize="@dimen/button_size_number" />
 
@@ -212,6 +218,7 @@
                 android:layout_marginRight="@dimen/button_margin"
                 android:layout_weight="4"
                 android:backgroundTint="@color/btn_number"
+                android:textStyle="bold"
                 android:text="@string/button_6"
                 android:textSize="@dimen/button_size_number" />
 
@@ -242,6 +249,7 @@
                 android:layout_marginRight="@dimen/button_margin"
                 android:layout_weight="4"
                 android:backgroundTint="@color/btn_number"
+                android:textStyle="bold"
                 android:text="@string/button_1"
                 android:textSize="@dimen/button_size_number" />
 
@@ -253,6 +261,7 @@
                 android:layout_marginRight="@dimen/button_margin"
                 android:layout_weight="4"
                 android:backgroundTint="@color/btn_number"
+                android:textStyle="bold"
                 android:text="@string/button_2"
                 android:textSize="@dimen/button_size_number" />
 
@@ -264,6 +273,7 @@
                 android:layout_marginRight="@dimen/button_margin"
                 android:layout_weight="4"
                 android:backgroundTint="@color/btn_number"
+                android:textStyle="bold"
                 android:text="@string/button_3"
                 android:textSize="@dimen/button_size_number" />
 
@@ -294,6 +304,7 @@
                 android:layout_marginRight="@dimen/button_margin"
                 android:layout_weight="4"
                 android:backgroundTint="@color/btn_number"
+                android:textStyle="bold"
                 android:text="@string/button_0"
                 android:textSize="@dimen/button_size_number" />
 
@@ -305,6 +316,7 @@
                 android:layout_marginRight="@dimen/button_margin"
                 android:layout_weight="4"
                 android:backgroundTint="@color/btn_number"
+                android:textStyle="bold"
                 android:text="@string/button_comma"
                 android:textSize="@dimen/button_size_number" />
 
@@ -316,6 +328,7 @@
                 android:layout_marginRight="@dimen/button_margin"
                 android:layout_weight="4"
                 android:backgroundTint="@color/btn_function"
+                android:textStyle="bold"
                 android:text="@string/button_equal"
                 android:textSize="@dimen/button_size_number" />
 
