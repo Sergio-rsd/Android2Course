@@ -21,7 +21,7 @@
     <string name="button_minus">-</string>
     <string name="button_plus">+</string>
     <string name="button_equal">=</string>
-    <string name="button_comma">,</string>
+    <string name="button_comma">.</string>
     <string name="button_plus_minus">±</string>
     <string name="button_percent">%</string>
 </resources>
