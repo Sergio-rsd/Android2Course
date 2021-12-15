@@ -55,7 +55,4 @@ public class NumbersButton {
         return NUMBER_9;
     }
 
-    /*
-    private final float comma = 23.4f;
-*/
 }

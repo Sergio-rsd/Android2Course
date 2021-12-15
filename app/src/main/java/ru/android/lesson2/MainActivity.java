@@ -2,12 +2,9 @@ package ru.android.lesson2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Path;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -17,8 +14,12 @@ public class MainActivity extends AppCompatActivity {
 
     private NumbersButton numbersButton;
     private OperationsButton operationsButton;
+    private ClearButton clearButton;
+    private SignButton minusPlusButton;
+    private MemoryButton memoryButton;
     //    private EditText expression;
     private TextView expression;
+    private TextView memoryInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,20 +28,84 @@ public class MainActivity extends AppCompatActivity {
 
         numbersButton = new NumbersButton();
         operationsButton = new OperationsButton();
+        clearButton = new ClearButton();
+        minusPlusButton = new SignButton();
+        memoryButton = new MemoryButton();
 
         initView();
     }
 
     private void initView() {
         expression = findViewById(R.id.place_result);
+        memoryInfo = findViewById(R.id.place_memory);
         initOperationsButton();
         initNumberButton();
-//        initButton7Click();
+        initClearButton();
+        initPlusMinusButton();
+        initMemoryButton();
+    }
+
+    // button of memory operations
+    private void initMemoryButton() {
+        Button buttonMemoryPlus = findViewById(R.id.button_m_plus);
+        buttonMemoryPlus.setOnClickListener(buttonMemoryPlusClickListener);
+
+        Button buttonMemoryMinus = findViewById(R.id.button_m_minus);
+        buttonMemoryMinus.setOnClickListener(buttonMemoryMinusClickListener);
+
+        Button buttonMemoryClear = findViewById(R.id.button_mc);
+        buttonMemoryClear.setOnClickListener(buttonMemoryClearClickListener);
+
+        Button buttonMemoryRead = findViewById(R.id.button_mr);
+        buttonMemoryRead.setOnClickListener(buttonMemoryReadClickListener);
+
+        Button buttonMemorySave = findViewById(R.id.button_ms);
+        buttonMemorySave.setOnClickListener(buttonMemorySaveClickListener);
+    }
+
+    public View.OnClickListener buttonMemoryPlusClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            setMemoryInTextView(memoryInfo, memoryButton.getMEM_PLUS());
+        }
+    };
+    public View.OnClickListener buttonMemoryMinusClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            setMemoryInTextView(memoryInfo, memoryButton.getMEM_MINUS());
+        }
+    };
+    public View.OnClickListener buttonMemoryClearClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            setMemoryInTextView(memoryInfo, memoryButton.getMEM_CLEAR());
+        }
+    };
+    public View.OnClickListener buttonMemoryReadClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            setMemoryInTextView(memoryInfo, memoryButton.getMEM_READ());
+        }
+    };
+    public View.OnClickListener buttonMemorySaveClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            setMemoryInTextView(memoryInfo, memoryButton.getMEM_SAVE());
+        }
+    };
+    private void setMemoryInTextView(TextView expression, String number) {
+        if (number.equals(memoryButton.getMEM_CLEAR())) {
+            expression.setText("");
+        } else {
+            expression.setText(number);
+        }
     }
 
     // button of operation
-
     private void initOperationsButton() {
+        Button buttonEqual = findViewById(R.id.button_equal);
+        buttonEqual.setOnClickListener(buttonEqualClickListener);
+
         Button buttonMinus = findViewById(R.id.button_minus);
         buttonMinus.setOnClickListener(buttonMinusClickListener);
 
@@ -61,6 +126,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public View.OnClickListener buttonEqualClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            setExpressionInTextView(expression, operationsButton.getEQUAL());
+        }
+    };
     public View.OnClickListener buttonMinusClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -193,13 +264,43 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    // clear button
+    private void initClearButton() {
+        Button buttonClear = findViewById(R.id.button_m_clear);
+        buttonClear.setOnClickListener(buttonClearClickListener);
+    }
+
+    public View.OnClickListener buttonClearClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            setExpressionInTextView(expression, clearButton.getCLEAR());
+        }
+    };
+
+    // minus/plus button
+    private void initPlusMinusButton() {
+        Button buttonPlusMinus = findViewById(R.id.button_plus_minus);
+        buttonPlusMinus.setOnClickListener(buttonPlusMinusClickListener);
+    }
+
+    public View.OnClickListener buttonPlusMinusClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            setExpressionInTextView(expression, minusPlusButton.getMINUS_PLUS());
+            // TODO обработка плюс-минус нужна
+        }
+    };
+
     private void setExpressionInTextView(TextView expression, int number) {
         expression.setText(new StringBuilder().append(expression.getText()).append(String.format(Locale.getDefault(), "%d", number)).toString());
     }
 
     private void setExpressionInTextView(TextView expression, char number) {
 //        expression.setText(expression.getText() + String.format(Locale.getDefault(), "%c", number));
-        expression.setText(new StringBuilder().append(expression.getText()).append(String.format(Locale.getDefault(), "%c", number)).toString());
+        if (number == clearButton.getCLEAR()) {
+            expression.setText("");
+        } else {
+            expression.setText(new StringBuilder().append(expression.getText()).append(String.format(Locale.getDefault(), "%c", number)).toString());
+        }
     }
-
 }

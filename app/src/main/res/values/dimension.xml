@@ -7,4 +7,5 @@
     <dimen name="margin_row">-2dp</dimen>
     <dimen name="margin_main_screen">2dp</dimen>
     <dimen name="place_number">46sp</dimen>
+    <dimen name="memory_text">20sp</dimen>
 </resources>

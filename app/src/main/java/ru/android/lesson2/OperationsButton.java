@@ -7,8 +7,13 @@ public class OperationsButton {
     private final char PLUS = '+';
     private final char PERCENT = '%';
     private final char COMMA = '.';
+    private final char EQUAL = '=';
 
     public OperationsButton() {
+    }
+
+    public char getEQUAL() {
+        return EQUAL;
     }
 
     public char getCOMMA() {
