@@ -2,14 +2,15 @@ package ru.android.lesson2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Locale;
 
-//public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 public class MainActivity extends AppCompatActivity {
 
     private NumbersButton numbersButton;
@@ -17,9 +18,11 @@ public class MainActivity extends AppCompatActivity {
     private ClearButton clearButton;
     private SignButton minusPlusButton;
     private MemoryButton memoryButton;
-    //    private EditText expression;
     private TextView expression;
     private TextView memoryInfo;
+    private StringBuilder mainWindow;
+    private StringBuilder memoryWindow;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
         clearButton = new ClearButton();
         minusPlusButton = new SignButton();
         memoryButton = new MemoryButton();
+        // хранить
+        mainWindow = new StringBuilder();
+        memoryWindow = new StringBuilder();
 
         initView();
     }
@@ -93,11 +99,14 @@ public class MainActivity extends AppCompatActivity {
             setMemoryInTextView(memoryInfo, memoryButton.getMEM_SAVE());
         }
     };
+
     private void setMemoryInTextView(TextView expression, String number) {
         if (number.equals(memoryButton.getMEM_CLEAR())) {
             expression.setText("");
+            memoryWindow.replace(0, memoryWindow.length(), "");
         } else {
             expression.setText(number);
+            memoryWindow.replace(0, memoryWindow.length(), number);
         }
     }
 
@@ -291,16 +300,28 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    @SuppressLint("SetTextI18n")
     private void setExpressionInTextView(TextView expression, int number) {
-        expression.setText(new StringBuilder().append(expression.getText()).append(String.format(Locale.getDefault(), "%d", number)).toString());
+        expression.setText(expression.getText() + String.format(Locale.getDefault(), "%d", number));
+        mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
+//        Toast.makeText(
+//                MainActivity.this,
+//                mainWindow,
+//                Toast.LENGTH_LONG
+//        ).show();
+//
     }
 
+    @SuppressLint("SetTextI18n")
     private void setExpressionInTextView(TextView expression, char number) {
 //        expression.setText(expression.getText() + String.format(Locale.getDefault(), "%c", number));
         if (number == clearButton.getCLEAR()) {
             expression.setText("");
+            mainWindow.replace(0, mainWindow.length(), "");
         } else {
-            expression.setText(new StringBuilder().append(expression.getText()).append(String.format(Locale.getDefault(), "%c", number)).toString());
+//            expression.setText(new StringBuilder().append(expression.getText()).append(String.format(Locale.getDefault(), "%c", number)).toString());
+            expression.setText(expression.getText() + String.format(Locale.getDefault(), "%c", number));
+            mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
         }
     }
 }
