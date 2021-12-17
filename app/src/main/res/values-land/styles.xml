@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="NumberButtonStyle.Functional.Clear.Land">
+        <item name="android:layout_gravity">center</item>
+    </style>
+    <style name="NumberButtonStyle.Functional.Land">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+</resources>

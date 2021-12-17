@@ -49,25 +49,25 @@
 
             <Button
                 android:id="@+id/button_m_plus"
-                style="@style/FunctionalButtonStyle"
+                style="@style/NumberButtonStyle.Functional"
                 android:text="@string/button_m_plus"
                 />
 
             <Button
                 android:id="@+id/button_m_minus"
-                style="@style/FunctionalButtonStyle"
+                style="@style/NumberButtonStyle.Functional"
                 android:text="@string/button_m_minus"
                 />
 
             <Button
                 android:id="@+id/button_plus_minus"
-                style="@style/FunctionalButtonStyle"
+                style="@style/NumberButtonStyle.Functional"
                 android:text="@string/button_plus_minus"
                 />
 
             <Button
                 android:id="@+id/button_m_clear"
-                style="@style/ClearButtonStyle"
+                style="@style/NumberButtonStyle.Functional.Clear"
                 android:text="@string/button_clear"
                 />
         </LinearLayout>
@@ -80,25 +80,25 @@
 
             <Button
                 android:id="@+id/button_mr"
-                style="@style/FunctionalButtonStyle"
+                style="@style/NumberButtonStyle.Functional"
                 android:text="@string/button_mr"
                 />
 
             <Button
                 android:id="@+id/button_ms"
-                style="@style/FunctionalButtonStyle"
+                style="@style/NumberButtonStyle.Functional"
                 android:text="@string/button_ms"
                 />
 
             <Button
                 android:id="@+id/button_mc"
-                style="@style/FunctionalButtonStyle"
+                style="@style/NumberButtonStyle.Functional"
                 android:text="@string/button_mc"
                 />
 
             <Button
                 android:id="@+id/button_percent"
-                style="@style/FunctionalButtonStyle"
+                style="@style/NumberButtonStyle.Functional"
                 android:text="@string/button_percent"
                 />
         </LinearLayout>
@@ -127,7 +127,7 @@
 
             <Button
                 android:id="@+id/button_divide"
-                style="@style/OperationButtonStyle"
+                style="@style/NumberButtonStyle.Operation"
                 android:text="@string/button_divide" />
         </LinearLayout>
 
@@ -155,7 +155,7 @@
 
             <Button
                 android:id="@+id/button_multiply"
-                style="@style/OperationButtonStyle"
+                style="@style/NumberButtonStyle.Operation"
                 android:text="@string/button_multiply" />
         </LinearLayout>
 
@@ -184,7 +184,7 @@
 
             <Button
                 android:id="@+id/button_minus"
-                style="@style/OperationButtonStyle"
+                style="@style/NumberButtonStyle.Operation"
                 android:text="@string/button_minus" />
         </LinearLayout>
 
@@ -207,12 +207,12 @@
 
             <Button
                 android:id="@+id/button_equal"
-                style="@style/OperationButtonStyle"
+                style="@style/NumberButtonStyle.Operation"
                 android:text="@string/button_equal" />
 
             <Button
                 android:id="@+id/button_plus"
-                style="@style/OperationButtonStyle"
+                style="@style/NumberButtonStyle.Operation"
                 android:text="@string/button_plus" />
         </LinearLayout>
     </LinearLayout>

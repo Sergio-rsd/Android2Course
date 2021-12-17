@@ -10,16 +10,16 @@
         <item name="android:textSize">@dimen/button_size_number</item>
         <item name="android:textStyle">bold</item>
     </style>
-    <style name="OperationButtonStyle" parent="NumberButtonStyle">
+    <style name="NumberButtonStyle.Operation">
         <item name="android:backgroundTint">@color/btn_function</item>
     </style>
-    <style name="FunctionalButtonStyle" parent="NumberButtonStyle">
+    <style name="NumberButtonStyle.Functional">
         <item name="android:layout_height">@dimen/button_text_height</item>
         <item name="android:backgroundTint">@color/btn_function</item>
         <item name="android:textSize">@dimen/button_text_size</item>
         <item name="android:textStyle">normal</item>
     </style>
-    <style name="ClearButtonStyle" parent="FunctionalButtonStyle">
+    <style name="NumberButtonStyle.Functional.Clear" parent="NumberButtonStyle.Functional">
         <item name="android:backgroundTint">@color/btn_red_clear</item>
         <item name="android:textStyle">bold</item>
     </style>
