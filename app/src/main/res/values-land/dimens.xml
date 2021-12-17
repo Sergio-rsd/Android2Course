@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <dimen name="button_size_number">41sp</dimen>
-    <dimen name="button_text_size">34sp</dimen>
-    <dimen name="button_text_height">76dp</dimen>
+    <dimen name="button_size_number">43sp</dimen>
+    <dimen name="button_text_size">33sp</dimen>
+    <dimen name="button_text_height">79dp</dimen>
     <dimen name="button_margin">2dp</dimen>
     <dimen name="margin_row">-2dp</dimen>
     <dimen name="margin_main_screen">2dp</dimen>

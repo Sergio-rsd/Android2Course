@@ -29,7 +29,8 @@
                 android:layout_weight="@integer/weight_main_out"
                 android:gravity="center|right"
                 android:textColor="@color/white"
-                android:textSize="@dimen/place_number" />
+                android:textSize="@dimen/place_number"
+                tools:ignore="NestedWeights" />
 
             <TextView
                 android:id="@+id/place_memory"
