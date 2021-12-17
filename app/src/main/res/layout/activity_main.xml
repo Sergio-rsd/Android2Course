@@ -49,48 +49,27 @@
 
             <Button
                 android:id="@+id/button_m_plus"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/button_text_height"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_function"
+                style="@style/FunctionalButtonStyle"
                 android:text="@string/button_m_plus"
-                android:textSize="@dimen/button_text_size" />
+                />
 
             <Button
                 android:id="@+id/button_m_minus"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/button_text_height"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_function"
+                style="@style/FunctionalButtonStyle"
                 android:text="@string/button_m_minus"
-                android:textSize="@dimen/button_text_size" />
+                />
 
             <Button
                 android:id="@+id/button_plus_minus"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/button_text_height"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_function"
+                style="@style/FunctionalButtonStyle"
                 android:text="@string/button_plus_minus"
-                android:textSize="@dimen/button_text_size" />
+                />
 
             <Button
                 android:id="@+id/button_m_clear"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/button_text_height"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_red_clear"
+                style="@style/ClearButtonStyle"
                 android:text="@string/button_clear"
-                android:textSize="@dimen/button_text_size"
-                android:textStyle="bold" />
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -101,47 +80,27 @@
 
             <Button
                 android:id="@+id/button_mr"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/button_text_height"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_function"
+                style="@style/FunctionalButtonStyle"
                 android:text="@string/button_mr"
-                android:textSize="@dimen/button_text_size" />
+                />
 
             <Button
                 android:id="@+id/button_ms"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/button_text_height"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_function"
+                style="@style/FunctionalButtonStyle"
                 android:text="@string/button_ms"
-                android:textSize="@dimen/button_text_size" />
+                />
 
             <Button
                 android:id="@+id/button_mc"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/button_text_height"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_function"
+                style="@style/FunctionalButtonStyle"
                 android:text="@string/button_mc"
-                android:textSize="@dimen/button_text_size" />
+                />
 
             <Button
                 android:id="@+id/button_percent"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/button_text_height"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_function"
+                style="@style/FunctionalButtonStyle"
                 android:text="@string/button_percent"
-                android:textSize="@dimen/button_text_size" />
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -153,50 +112,23 @@
 
             <Button
                 android:id="@+id/button_7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_number"
-                android:text="@string/button_7"
-                android:textSize="@dimen/button_size_number"
-                android:textStyle="bold" />
+                style="@style/NumberButtonStyle"
+                android:text="@string/button_7" />
 
             <Button
                 android:id="@+id/button_8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_number"
-                android:text="@string/button_8"
-                android:textSize="@dimen/button_size_number"
-                android:textStyle="bold" />
+                style="@style/NumberButtonStyle"
+                android:text="@string/button_8" />
 
             <Button
                 android:id="@+id/button_9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_number"
-                android:text="@string/button_9"
-                android:textSize="@dimen/button_size_number"
-                android:textStyle="bold" />
+                style="@style/NumberButtonStyle"
+                android:text="@string/button_9" />
 
             <Button
                 android:id="@+id/button_divide"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_function"
-                android:text="@string/button_divide"
-                android:textSize="@dimen/button_size_number" />
+                style="@style/OperationButtonStyle"
+                android:text="@string/button_divide" />
         </LinearLayout>
 
         <LinearLayout
@@ -208,50 +140,23 @@
 
             <Button
                 android:id="@+id/button_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_number"
-                android:text="@string/button_4"
-                android:textSize="@dimen/button_size_number"
-                android:textStyle="bold" />
+                style="@style/NumberButtonStyle"
+                android:text="@string/button_4" />
 
             <Button
                 android:id="@+id/button_5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_number"
-                android:text="@string/button_5"
-                android:textSize="@dimen/button_size_number"
-                android:textStyle="bold" />
+                style="@style/NumberButtonStyle"
+                android:text="@string/button_5" />
 
             <Button
                 android:id="@+id/button_6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_number"
-                android:text="@string/button_6"
-                android:textSize="@dimen/button_size_number"
-                android:textStyle="bold" />
+                style="@style/NumberButtonStyle"
+                android:text="@string/button_6" />
 
             <Button
                 android:id="@+id/button_multiply"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_function"
-                android:text="@string/button_multiply"
-                android:textSize="@dimen/button_size_number" />
+                style="@style/OperationButtonStyle"
+                android:text="@string/button_multiply" />
         </LinearLayout>
 
         <LinearLayout
@@ -263,50 +168,24 @@
 
             <Button
                 android:id="@+id/button_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_number"
-                android:text="@string/button_1"
-                android:textSize="@dimen/button_size_number"
-                android:textStyle="bold" />
+                style="@style/NumberButtonStyle"
+                android:text="@string/button_1" />
 
             <Button
                 android:id="@+id/button_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_number"
-                android:text="@string/button_2"
-                android:textSize="@dimen/button_size_number"
-                android:textStyle="bold" />
+                style="@style/NumberButtonStyle"
+                android:text="@string/button_2" />
 
             <Button
                 android:id="@+id/button_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_number"
+                style="@style/NumberButtonStyle"
                 android:text="@string/button_3"
-                android:textSize="@dimen/button_size_number"
                 android:textStyle="bold" />
 
             <Button
                 android:id="@+id/button_minus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_function"
-                android:text="@string/button_minus"
-                android:textSize="@dimen/button_size_number" />
+                style="@style/OperationButtonStyle"
+                android:text="@string/button_minus" />
         </LinearLayout>
 
         <LinearLayout
@@ -318,50 +197,23 @@
 
             <Button
                 android:id="@+id/button_0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_number"
-                android:text="@string/button_0"
-                android:textSize="@dimen/button_size_number"
-                android:textStyle="bold" />
+                style="@style/NumberButtonStyle"
+                android:text="@string/button_0" />
 
             <Button
                 android:id="@+id/button_comma"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_number"
-                android:text="@string/button_comma"
-                android:textSize="@dimen/button_size_number"
-                android:textStyle="bold" />
+                style="@style/NumberButtonStyle"
+                android:text="@string/button_comma" />
 
             <Button
                 android:id="@+id/button_equal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_function"
-                android:text="@string/button_equal"
-                android:textSize="@dimen/button_size_number"
-                android:textStyle="bold" />
+                style="@style/OperationButtonStyle"
+                android:text="@string/button_equal" />
 
             <Button
                 android:id="@+id/button_plus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
-                android:layout_weight="@integer/weight_operation"
-                android:backgroundTint="@color/btn_function"
-                android:text="@string/button_plus"
-                android:textSize="@dimen/button_size_number" />
+                style="@style/OperationButtonStyle"
+                android:text="@string/button_plus" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>
