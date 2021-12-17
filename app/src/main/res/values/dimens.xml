@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    // turn portrait
+    <dimen name="button_size_number">43sp</dimen>
+    <dimen name="button_text_size">27sp</dimen>
+    <dimen name="button_text_height">75dp</dimen>
+    <dimen name="button_margin">2dp</dimen>
+    <dimen name="margin_row">-2dp</dimen>
+    <dimen name="margin_main_screen">2dp</dimen>
+    <dimen name="place_number">46sp</dimen>
+    <dimen name="memory_text">20sp</dimen>
+    // turn landscape
+    <dimen name="button_size_number_round">18sp</dimen>
+    <dimen name="button_text_size_round">16sp</dimen>
+    <dimen name="button_text_height_round">40dp</dimen>
+    <dimen name="button_margin_round">1dp</dimen>
+    <dimen name="margin_row_round">-4dp</dimen>
+    <dimen name="margin_main_screen_round">3dp</dimen>
+    <dimen name="place_number_round">33sp</dimen>
+    <dimen name="memory_text_round">20sp</dimen>
+</resources>
