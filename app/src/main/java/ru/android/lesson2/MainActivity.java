@@ -5,8 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.android.material.button.MaterialButton;
 
 import java.util.Locale;
 
@@ -52,19 +53,19 @@ public class MainActivity extends AppCompatActivity {
 
     // button of memory operations
     private void initMemoryButton() {
-        Button buttonMemoryPlus = findViewById(R.id.button_m_plus);
+        MaterialButton buttonMemoryPlus = findViewById(R.id.button_m_plus);
         buttonMemoryPlus.setOnClickListener(buttonMemoryPlusClickListener);
 
-        Button buttonMemoryMinus = findViewById(R.id.button_m_minus);
+        MaterialButton buttonMemoryMinus = findViewById(R.id.button_m_minus);
         buttonMemoryMinus.setOnClickListener(buttonMemoryMinusClickListener);
 
-        Button buttonMemoryClear = findViewById(R.id.button_mc);
+        MaterialButton buttonMemoryClear = findViewById(R.id.button_mc);
         buttonMemoryClear.setOnClickListener(buttonMemoryClearClickListener);
 
-        Button buttonMemoryRead = findViewById(R.id.button_mr);
+        MaterialButton buttonMemoryRead = findViewById(R.id.button_mr);
         buttonMemoryRead.setOnClickListener(buttonMemoryReadClickListener);
 
-        Button buttonMemorySave = findViewById(R.id.button_ms);
+        MaterialButton buttonMemorySave = findViewById(R.id.button_ms);
         buttonMemorySave.setOnClickListener(buttonMemorySaveClickListener);
     }
 
@@ -111,25 +112,25 @@ public class MainActivity extends AppCompatActivity {
 
     // button of operation
     private void initOperationsButton() {
-        Button buttonEqual = findViewById(R.id.button_equal);
+        MaterialButton buttonEqual = findViewById(R.id.button_equal);
         buttonEqual.setOnClickListener(buttonEqualClickListener);
 
-        Button buttonMinus = findViewById(R.id.button_minus);
+        MaterialButton buttonMinus = findViewById(R.id.button_minus);
         buttonMinus.setOnClickListener(buttonMinusClickListener);
 
-        Button buttonPlus = findViewById(R.id.button_plus);
+        MaterialButton buttonPlus = findViewById(R.id.button_plus);
         buttonPlus.setOnClickListener(buttonPlusClickListener);
 
-        Button buttonMultiply = findViewById(R.id.button_multiply);
+        MaterialButton buttonMultiply = findViewById(R.id.button_multiply);
         buttonMultiply.setOnClickListener(buttonMultiplyClickListener);
 
-        Button buttonDivide = findViewById(R.id.button_divide);
+        MaterialButton buttonDivide = findViewById(R.id.button_divide);
         buttonDivide.setOnClickListener(buttonDivideClickListener);
 
-        Button buttonComma = findViewById(R.id.button_comma);
+        MaterialButton buttonComma = findViewById(R.id.button_comma);
         buttonComma.setOnClickListener(buttonCommaClickListener);
 
-        Button buttonPercent = findViewById(R.id.button_percent);
+        MaterialButton buttonPercent = findViewById(R.id.button_percent);
         buttonPercent.setOnClickListener(buttonPercentClickListener);
 
     }
@@ -180,34 +181,34 @@ public class MainActivity extends AppCompatActivity {
     // button of numbers
 
     private void initNumberButton() {
-        Button button0 = findViewById(R.id.button_0);
+        MaterialButton button0 = findViewById(R.id.button_0);
         button0.setOnClickListener(button0ClickListener);
 
-        Button button1 = findViewById(R.id.button_1);
+        MaterialButton button1 = findViewById(R.id.button_1);
         button1.setOnClickListener(button1ClickListener);
 
-        Button button2 = findViewById(R.id.button_2);
+        MaterialButton button2 = findViewById(R.id.button_2);
         button2.setOnClickListener(button2ClickListener);
 
-        Button button3 = findViewById(R.id.button_3);
+        MaterialButton button3 = findViewById(R.id.button_3);
         button3.setOnClickListener(button3ClickListener);
 
-        Button button4 = findViewById(R.id.button_4);
+        MaterialButton button4 = findViewById(R.id.button_4);
         button4.setOnClickListener(button4ClickListener);
 
-        Button button5 = findViewById(R.id.button_5);
+        MaterialButton button5 = findViewById(R.id.button_5);
         button5.setOnClickListener(button5ClickListener);
 
-        Button button6 = findViewById(R.id.button_6);
+        MaterialButton button6 = findViewById(R.id.button_6);
         button6.setOnClickListener(button6ClickListener);
 
-        Button button7 = findViewById(R.id.button_7);
+        MaterialButton button7 = findViewById(R.id.button_7);
         button7.setOnClickListener(button7ClickListener);
 
-        Button button8 = findViewById(R.id.button_8);
+        MaterialButton button8 = findViewById(R.id.button_8);
         button8.setOnClickListener(button8ClickListener);
 
-        Button button9 = findViewById(R.id.button_9);
+        MaterialButton button9 = findViewById(R.id.button_9);
         button9.setOnClickListener(button9ClickListener);
     }
 
@@ -274,7 +275,7 @@ public class MainActivity extends AppCompatActivity {
 
     // clear button
     private void initClearButton() {
-        Button buttonClear = findViewById(R.id.button_m_clear);
+        MaterialButton buttonClear = findViewById(R.id.button_m_clear);
         buttonClear.setOnClickListener(buttonClearClickListener);
     }
 
@@ -287,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
 
     // minus/plus button
     private void initPlusMinusButton() {
-        Button buttonPlusMinus = findViewById(R.id.button_plus_minus);
+        MaterialButton buttonPlusMinus = findViewById(R.id.button_plus_minus);
         buttonPlusMinus.setOnClickListener(buttonPlusMinusClickListener);
     }
 

@@ -6,21 +6,22 @@
         <item name="android:layout_marginLeft">@dimen/button_margin</item>
         <item name="android:layout_marginRight">@dimen/button_margin</item>
         <item name="android:layout_weight">@integer/weight_operation</item>
-        <item name="android:backgroundTint">@color/btn_number</item>
+        <item name="android:backgroundTint">@color/btn_number_night</item>
         <item name="android:textSize">@dimen/button_size_number</item>
+        <item name="android:textColor">@color/btn_color_text_night</item>
         <item name="android:textStyle">bold</item>
     </style>
     <style name="NumberButtonStyle.Operation">
-        <item name="android:backgroundTint">@color/btn_function</item>
+        <item name="android:backgroundTint">@color/btn_function_night</item>
     </style>
     <style name="NumberButtonStyle.Functional">
         <item name="android:layout_height">@dimen/button_text_height</item>
-        <item name="android:backgroundTint">@color/btn_function</item>
+        <item name="android:backgroundTint">@color/btn_function_night</item>
         <item name="android:textSize">@dimen/button_text_size</item>
         <item name="android:textStyle">normal</item>
     </style>
     <style name="NumberButtonStyle.Functional.Clear" parent="NumberButtonStyle.Functional">
-        <item name="android:backgroundTint">@color/btn_red_clear</item>
+        <item name="android:backgroundTint">@color/btn_red_clear_night</item>
         <item name="android:textStyle">bold</item>
     </style>
     <style name="ButtonsRowTitle">
