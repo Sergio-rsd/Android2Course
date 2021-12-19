@@ -1,5 +1,7 @@
 package ru.android.lesson2;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -20,12 +22,21 @@ public class MainActivity extends AppCompatActivity {
     private MemoryButton memoryButton;
     private TextView expression;
     private TextView memoryInfo;
-    private StringBuilder mainWindow;
-    private StringBuilder memoryWindow;
-
+    private StringBuilder mainWindow = new StringBuilder();
+    private StringBuilder memoryWindow = new StringBuilder();
+    public static final String RESULT = "RESULT";
+    private Result resultText = new Result();
+//    numbersButton = new NumbersButton();
+//    operationsButton = new OperationsButton();
+//    clearButton = new ClearButton();
+//    minusPlusButton = new SignButton();
+//    memoryButton = new MemoryButton();
+//    // хранить
+//    mainWindow = new StringBuilder();
+//    memoryWindow = new StringBuilder();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -35,15 +46,30 @@ public class MainActivity extends AppCompatActivity {
         minusPlusButton = new SignButton();
         memoryButton = new MemoryButton();
         // хранить
-        mainWindow = new StringBuilder();
-        memoryWindow = new StringBuilder();
-
+//        mainWindow = new StringBuilder();
+//        memoryWindow = new StringBuilder();
+        expression = findViewById(R.id.place_result);
+        memoryInfo = findViewById(R.id.place_memory);
+        if (savedInstanceState != null && savedInstanceState.containsKey(RESULT)) {
+            resultText = savedInstanceState.getParcelable(RESULT);
+            expression.setText(resultText.getResultWindow());
+            memoryInfo.setText(resultText.getMemWindow());
+//            expression.setText();
+        }
+//        expression.setText(resultText.getResultWindow());
         initView();
     }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(RESULT, resultText);
+//        outState.writeToParcel(expression.getText(),1);
+    }
+
     private void initView() {
-        expression = findViewById(R.id.place_result);
-        memoryInfo = findViewById(R.id.place_memory);
+//        expression = findViewById(R.id.place_result);
+//        memoryInfo = findViewById(R.id.place_memory);
         initOperationsButton();
         initNumberButton();
         initClearButton();
