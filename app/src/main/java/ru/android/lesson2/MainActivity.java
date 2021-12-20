@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -22,18 +23,12 @@ public class MainActivity extends AppCompatActivity {
     private MemoryButton memoryButton;
     private TextView expression;
     private TextView memoryInfo;
-    private StringBuilder mainWindow = new StringBuilder();
-    private StringBuilder memoryWindow = new StringBuilder();
+    //    private StringBuilder mainWindow = new StringBuilder();
+//    private StringBuilder memoryWindow = new StringBuilder();
+    private StringBuilder mainWindow;
+    private StringBuilder memoryWindow;
     public static final String RESULT = "RESULT";
     private Result resultText = new Result();
-//    numbersButton = new NumbersButton();
-//    operationsButton = new OperationsButton();
-//    clearButton = new ClearButton();
-//    minusPlusButton = new SignButton();
-//    memoryButton = new MemoryButton();
-//    // хранить
-//    mainWindow = new StringBuilder();
-//    memoryWindow = new StringBuilder();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,17 +41,21 @@ public class MainActivity extends AppCompatActivity {
         minusPlusButton = new SignButton();
         memoryButton = new MemoryButton();
         // хранить
-//        mainWindow = new StringBuilder();
-//        memoryWindow = new StringBuilder();
+        mainWindow = new StringBuilder();
+        memoryWindow = new StringBuilder();
         expression = findViewById(R.id.place_result);
         memoryInfo = findViewById(R.id.place_memory);
         if (savedInstanceState != null && savedInstanceState.containsKey(RESULT)) {
             resultText = savedInstanceState.getParcelable(RESULT);
             expression.setText(resultText.getResultWindow());
             memoryInfo.setText(resultText.getMemWindow());
-//            expression.setText();
+//            Toast.makeText(
+//                    MainActivity.this,
+////                    expression.getText(),
+//                    resultText.getResultWindow(),
+//                    Toast.LENGTH_LONG
+//            ).show();
         }
-//        expression.setText(resultText.getResultWindow());
         initView();
     }
 
@@ -134,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
             expression.setText(number);
             memoryWindow.replace(0, memoryWindow.length(), number);
         }
+        resultText.setMemWindow(memoryWindow.toString());
     }
 
     // button of operation
@@ -330,6 +330,7 @@ public class MainActivity extends AppCompatActivity {
     private void setExpressionInTextView(TextView expression, int number) {
         expression.setText(expression.getText() + String.format(Locale.getDefault(), "%d", number));
         mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
+        resultText.setResultWindow(mainWindow.toString());
 //        Toast.makeText(
 //                MainActivity.this,
 //                mainWindow,
@@ -349,5 +350,6 @@ public class MainActivity extends AppCompatActivity {
             expression.setText(expression.getText() + String.format(Locale.getDefault(), "%c", number));
             mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
         }
+        resultText.setResultWindow(mainWindow.toString());
     }
 }
