@@ -9,8 +9,7 @@ public class Result implements Parcelable {
     private String memWindow;
 
     public Result() {
-//        resultWindow = "";
-//        memWindow = "";
+
     }
 
     protected Result(Parcel in) {

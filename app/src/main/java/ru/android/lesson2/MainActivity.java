@@ -23,18 +23,19 @@ public class MainActivity extends AppCompatActivity {
     private MemoryButton memoryButton;
     private TextView expression;
     private TextView memoryInfo;
-    //    private StringBuilder mainWindow = new StringBuilder();
-//    private StringBuilder memoryWindow = new StringBuilder();
     private StringBuilder mainWindow;
     private StringBuilder memoryWindow;
     public static final String RESULT = "RESULT";
     private Result resultText = new Result();
+    //    private Calculate calculate = new Calculate();
+    private Calculate calculate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        calculate = new Calculate();
         numbersButton = new NumbersButton();
         operationsButton = new OperationsButton();
         clearButton = new ClearButton();
@@ -63,12 +64,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(RESULT, resultText);
-//        outState.writeToParcel(expression.getText(),1);
     }
 
     private void initView() {
-//        expression = findViewById(R.id.place_result);
-//        memoryInfo = findViewById(R.id.place_memory);
         initOperationsButton();
         initNumberButton();
         initClearButton();
@@ -204,8 +202,8 @@ public class MainActivity extends AppCompatActivity {
             setExpressionInTextView(expression, operationsButton.getPERCENT());
         }
     };
-    // button of numbers
 
+    // button of numbers
     private void initNumberButton() {
         MaterialButton button0 = findViewById(R.id.button_0);
         button0.setOnClickListener(button0ClickListener);
@@ -345,6 +343,13 @@ public class MainActivity extends AppCompatActivity {
         if (number == clearButton.getCLEAR()) {
             expression.setText("");
             mainWindow.replace(0, mainWindow.length(), "");
+        } else if (number == operationsButton.getEQUAL()) {
+//            expression.setText((CharSequence) new Calculate(expression.getText().toString()));
+//            expression.setText(calculate("2+3").getNumberCalc());
+//            expression.setText(new Calculate("2+3").getNumberCalc());
+//            calculate = new Calculate((String) expression.getText());
+            expression.setText(new Calculate((String) expression.getText()).getNumberCalc());
+            mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
         } else {
 //            expression.setText(new StringBuilder().append(expression.getText()).append(String.format(Locale.getDefault(), "%c", number)).toString());
             expression.setText(expression.getText() + String.format(Locale.getDefault(), "%c", number));

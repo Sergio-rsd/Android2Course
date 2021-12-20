@@ -1,9 +1,9 @@
 package ru.android.lesson2;
 
 public class SignButton {
-    private final int MINUS_PLUS = -1;
+    private final char MINUS_PLUS = '-';
 
-    public int getMINUS_PLUS() {
+    public char getMINUS_PLUS() {
         return MINUS_PLUS;
     }
 }
