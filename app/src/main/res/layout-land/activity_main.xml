@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -64,9 +65,11 @@
                 android:text="@string/button_divide" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_m_plus"
+                android:id="@+id/button_delete_char"
                 style="@style/NumberButtonStyle.Functional.Land"
-                android:text="@string/button_m_plus" />
+                app:icon="@android:drawable/ic_input_delete"
+                app:iconGravity="textStart"
+                tools:ignore="SpeakableTextPresentCheck" />
 
 
             <com.google.android.material.button.MaterialButton
@@ -98,9 +101,9 @@
                 android:text="@string/button_multiply" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_m_minus"
+                android:id="@+id/button_m_plus"
                 style="@style/NumberButtonStyle.Functional.Land"
-                android:text="@string/button_m_minus" />
+                android:text="@string/button_m_plus" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_mr"
@@ -132,9 +135,9 @@
                 android:text="@string/button_minus" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_plus_minus"
+                android:id="@+id/button_m_minus"
                 style="@style/NumberButtonStyle.Functional.Land"
-                android:text="@string/button_plus_minus" />
+                android:text="@string/button_m_minus" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_ms"

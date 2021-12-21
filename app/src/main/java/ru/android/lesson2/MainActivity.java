@@ -8,7 +8,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -19,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private NumbersButton numbersButton;
     private OperationsButton operationsButton;
     private ClearButton clearButton;
-    private SignButton minusPlusButton;
+    private DeleteSign deleteOneChar; //
     private MemoryButton memoryButton;
     private TextView expression;
     private TextView memoryInfo;
@@ -27,19 +26,17 @@ public class MainActivity extends AppCompatActivity {
     private StringBuilder memoryWindow;
     public static final String RESULT = "RESULT";
     private Result resultText = new Result();
-    //    private Calculate calculate = new Calculate();
-    private Calculate calculate;
+//    private Calculate calculate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        calculate = new Calculate();
         numbersButton = new NumbersButton();
         operationsButton = new OperationsButton();
         clearButton = new ClearButton();
-        minusPlusButton = new SignButton();
+        deleteOneChar = new DeleteSign();
         memoryButton = new MemoryButton();
         // хранить
         mainWindow = new StringBuilder();
@@ -70,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         initOperationsButton();
         initNumberButton();
         initClearButton();
-        initPlusMinusButton();
+        initDeleteSignButton();
         initMemoryButton();
     }
 
@@ -310,17 +307,18 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    // minus/plus button
-    private void initPlusMinusButton() {
-        MaterialButton buttonPlusMinus = findViewById(R.id.button_plus_minus);
-        buttonPlusMinus.setOnClickListener(buttonPlusMinusClickListener);
+    // minus/plus button - no
+    // replace ONE sign delete
+    private void initDeleteSignButton() {
+        MaterialButton buttonDeleteChar = findViewById(R.id.button_delete_char);
+        buttonDeleteChar.setOnClickListener(buttonDeleteCharClickListener);
     }
 
-    public View.OnClickListener buttonPlusMinusClickListener = new View.OnClickListener() {
+    public View.OnClickListener buttonDeleteCharClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            setExpressionInTextView(expression, minusPlusButton.getMINUS_PLUS());
-            // TODO обработка плюс-минус нужна
+            setExpressionInTextView(expression, deleteOneChar.getDELETE_CHAR());
+            // TODO обработка плюс-минус нужна - зачем? убрал! сделано удаление одного символа
         }
     };
 
@@ -344,10 +342,6 @@ public class MainActivity extends AppCompatActivity {
             expression.setText("");
             mainWindow.replace(0, mainWindow.length(), "");
         } else if (number == operationsButton.getEQUAL()) {
-//            expression.setText((CharSequence) new Calculate(expression.getText().toString()));
-//            expression.setText(calculate("2+3").getNumberCalc());
-//            expression.setText(new Calculate("2+3").getNumberCalc());
-//            calculate = new Calculate((String) expression.getText());
             expression.setText(new Calculate((String) expression.getText()).getNumberCalc());
             mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
         } else {
