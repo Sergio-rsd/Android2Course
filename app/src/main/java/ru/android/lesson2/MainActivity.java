@@ -341,6 +341,10 @@ public class MainActivity extends AppCompatActivity {
         if (number == clearButton.getCLEAR()) {
             expression.setText("");
             mainWindow.replace(0, mainWindow.length(), "");
+        } else if (number == deleteOneChar.getDELETE_CHAR()) {
+            expression.setText((String) ((String) expression.getText()).substring(0, expression.getText().length() - 1));
+            mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
+
         } else if (number == operationsButton.getEQUAL()) {
             expression.setText(new Calculate((String) expression.getText()).getNumberCalc());
             mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
