@@ -1,12 +1,16 @@
 package ru.android.lesson2;
 
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import androidx.annotation.RequiresApi;
 
 public class Result implements Parcelable {
 
     private String resultWindow;
     private String memWindow;
+    private boolean checkResult;
 
     public Result() {
 
@@ -15,8 +19,9 @@ public class Result implements Parcelable {
     protected Result(Parcel in) {
         resultWindow = in.readString();
         memWindow = in.readString();
+        checkResult = in.readByte() != 0;
     }
-
+// TODO
     public static final Creator<Result> CREATOR = new Creator<Result>() {
         @Override
         public Result createFromParcel(Parcel in) {
@@ -38,6 +43,7 @@ public class Result implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(resultWindow);
         dest.writeString(memWindow);
+        dest.writeByte((byte) (checkResult ? 1 : 0));
     }
 
     public String getResultWindow() {
@@ -54,5 +60,13 @@ public class Result implements Parcelable {
 
     public void setMemWindow(String memWindow) {
         this.memWindow = memWindow;
+    }
+
+    public boolean isCheckResult() {
+        return checkResult;
+    }
+
+    public void setCheckResult(boolean checkResult) {
+        this.checkResult = checkResult;
     }
 }

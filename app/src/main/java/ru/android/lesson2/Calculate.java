@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class Calculate {
-    //    private double numberCalc; // зачем?
 
     private String numberCalc;
 //    ExpressionParser n = new ExpressionParser();
@@ -23,7 +22,7 @@ public class Calculate {
 
 //        ExpressionParser n = new ExpressionParser();
         List<String> expression = ExpressionParser.parse(this.numberCalc);
-        boolean flag = ExpressionParser.flag;
+        boolean flag = ExpressionParser.flag; // зачем обьявлять?
         this.numberCalc = String.valueOf(calc(expression));
 
     }

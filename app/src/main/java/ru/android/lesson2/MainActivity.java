@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView expression;
     private TextView memoryInfo;
     private boolean checkCalculate = false;
+//    private boolean checkCalculate;
 //    private StringBuilder mainWindow =new StringBuilder();
 //    private StringBuilder memoryWindow = new StringBuilder();
 
@@ -46,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         // хранить
         mainWindow = new StringBuilder();
         memoryWindow = new StringBuilder();
-//        mainWindow.append(0);
         expression = findViewById(R.id.place_result);
         memoryInfo = findViewById(R.id.place_memory);
         expression.setText("0");
@@ -55,10 +56,12 @@ public class MainActivity extends AppCompatActivity {
             resultText = savedInstanceState.getParcelable(RESULT);
             expression.setText(resultText.getResultWindow());
             memoryInfo.setText(resultText.getMemWindow());
+            checkCalculate = resultText.isCheckResult();
 //            Toast.makeText(
 //                    MainActivity.this,
 ////                    expression.getText(),
-//                    resultText.getResultWindow(),
+////                    resultText.getResultWindow(),
+//                    (String) ("Info: " + resultText.isCheckResult()),
 //                    Toast.LENGTH_LONG
 //            ).show();
         }
@@ -176,7 +179,6 @@ public class MainActivity extends AppCompatActivity {
             setExpressionInTextView(expression, operationsButton.getMINUS());
         }
     };
-
     public View.OnClickListener buttonPlusClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -331,13 +333,37 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void setExpressionInTextView(TextView expression, int number) {
-
+//        Toast.makeText(
+//                MainActivity.this,
+//                (String) ("Info перед : " + resultText.isCheckResult()),
+//                Toast.LENGTH_LONG
+//        ).show();
         // проверка на начальный ноль.
         if ((expression.getText().toString().charAt(0) == '0' && expression.getText().length() == 1) || checkCalculate) {
             expression.setText("");
-            checkCalculate = false;
-        }
 
+//            checkCalculate = false;
+//            resultText.setCheckResult(checkCalculate);
+        }
+        if (checkCalculate) {
+            expression.setText("");
+//            Toast.makeText(
+//                    MainActivity.this,
+//                    ("Текст после поворота: " + expression.getText()),
+////                    resultText.getResultWindow(),
+////                    (String) ("Info: " + resultText.isCheckResult()),
+//                    Toast.LENGTH_LONG
+//            ).show();
+        }
+        checkCalculate = false;
+        resultText.setCheckResult(checkCalculate);
+//        Toast.makeText(
+//                MainActivity.this,
+//                ("Текст: " + expression.getText()),
+////                    resultText.getResultWindow(),
+////                    (String) ("Info: " + resultText.isCheckResult()),
+//                Toast.LENGTH_LONG
+//        ).show();
         expression.setText(expression.getText() + String.format(Locale.getDefault(), "%d", number));
         mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
         resultText.setResultWindow(mainWindow.toString());
@@ -355,11 +381,13 @@ public class MainActivity extends AppCompatActivity {
         if (number == clearButton.getCLEAR()) {
             expression.setText("0");
             checkCalculate = false;
+            resultText.setCheckResult(checkCalculate);
             mainWindow.replace(0, mainWindow.length(), "0");
         } else if (number == deleteOneChar.getDELETE_CHAR()) {
             if (expression.getText().length() == 0) {
                 expression.setText("0");
                 checkCalculate = false;
+                resultText.setCheckResult(checkCalculate);
                 mainWindow.replace(0, mainWindow.length(), "0");
             } else {
                 expression.setText((String) ((String) expression.getText()).substring(0, expression.getText().length() - 1));
@@ -367,12 +395,14 @@ public class MainActivity extends AppCompatActivity {
                     expression.setText("0");
                     mainWindow.replace(0, mainWindow.length(), "0");
                 }
-                checkCalculate = false; /// а сюда надо?
+                checkCalculate = false;
+                resultText.setCheckResult(checkCalculate);
                 mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
             }
         } else if (number == operationsButton.getEQUAL()) {
             expression.setText(new Calculate((String) expression.getText()).getNumberCalc());
             checkCalculate = true;
+            resultText.setCheckResult(checkCalculate);
             mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
         } else {
 //            expression.setText(new StringBuilder().append(expression.getText()).append(String.format(Locale.getDefault(), "%c", number)).toString());
@@ -382,6 +412,7 @@ public class MainActivity extends AppCompatActivity {
             }
             expression.setText(expression.getText() + String.format(Locale.getDefault(), "%c", number));
             checkCalculate = false;
+            resultText.setCheckResult(checkCalculate);
             mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
         }
         resultText.setResultWindow(mainWindow.toString());
