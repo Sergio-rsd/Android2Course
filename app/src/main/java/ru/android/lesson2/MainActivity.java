@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private MemoryButton memoryButton;
     private TextView expression;
     private TextView memoryInfo;
+    private boolean checkCalculate = false;
 //    private StringBuilder mainWindow =new StringBuilder();
 //    private StringBuilder memoryWindow = new StringBuilder();
 
@@ -331,9 +332,10 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void setExpressionInTextView(TextView expression, int number) {
 
-        // TODO не работает пока - ЗАРАБОТАЛО
-        if (expression.getText().toString().charAt(0) == '0' && expression.getText().length() == 1) {
+        // проверка на начальный ноль.
+        if ((expression.getText().toString().charAt(0) == '0' && expression.getText().length() == 1) || checkCalculate) {
             expression.setText("");
+            checkCalculate = false;
         }
 
         expression.setText(expression.getText() + String.format(Locale.getDefault(), "%d", number));
@@ -352,10 +354,12 @@ public class MainActivity extends AppCompatActivity {
 //        expression.setText(expression.getText() + String.format(Locale.getDefault(), "%c", number));
         if (number == clearButton.getCLEAR()) {
             expression.setText("0");
+            checkCalculate = false;
             mainWindow.replace(0, mainWindow.length(), "0");
         } else if (number == deleteOneChar.getDELETE_CHAR()) {
             if (expression.getText().length() == 0) {
                 expression.setText("0");
+                checkCalculate = false;
                 mainWindow.replace(0, mainWindow.length(), "0");
             } else {
                 expression.setText((String) ((String) expression.getText()).substring(0, expression.getText().length() - 1));
@@ -363,19 +367,21 @@ public class MainActivity extends AppCompatActivity {
                     expression.setText("0");
                     mainWindow.replace(0, mainWindow.length(), "0");
                 }
+                checkCalculate = false; /// а сюда надо?
                 mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
             }
         } else if (number == operationsButton.getEQUAL()) {
             expression.setText(new Calculate((String) expression.getText()).getNumberCalc());
+            checkCalculate = true;
             mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
         } else {
 //            expression.setText(new StringBuilder().append(expression.getText()).append(String.format(Locale.getDefault(), "%c", number)).toString());
 //            if (number == expression.getText().charAt(expression.getText().length()-1)) {
             if (!Character.isDigit(expression.getText().charAt(expression.getText().length() - 1))) {
-//                expression.setText(expression.getText());
                 expression.setText((String) ((String) expression.getText()).substring(0, expression.getText().length() - 1));
             }
             expression.setText(expression.getText() + String.format(Locale.getDefault(), "%c", number));
+            checkCalculate = false;
             mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
         }
         resultText.setResultWindow(mainWindow.toString());
