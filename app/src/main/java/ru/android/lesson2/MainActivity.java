@@ -22,8 +22,12 @@ public class MainActivity extends AppCompatActivity {
     private MemoryButton memoryButton;
     private TextView expression;
     private TextView memoryInfo;
+//    private StringBuilder mainWindow =new StringBuilder();
+//    private StringBuilder memoryWindow = new StringBuilder();
+
     private StringBuilder mainWindow;
     private StringBuilder memoryWindow;
+
     public static final String RESULT = "RESULT";
     private Result resultText = new Result();
 //    private Calculate calculate;
@@ -41,8 +45,11 @@ public class MainActivity extends AppCompatActivity {
         // хранить
         mainWindow = new StringBuilder();
         memoryWindow = new StringBuilder();
+//        mainWindow.append(0);
         expression = findViewById(R.id.place_result);
         memoryInfo = findViewById(R.id.place_memory);
+        expression.setText("0");
+
         if (savedInstanceState != null && savedInstanceState.containsKey(RESULT)) {
             resultText = savedInstanceState.getParcelable(RESULT);
             expression.setText(resultText.getResultWindow());
@@ -318,12 +325,17 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             setExpressionInTextView(expression, deleteOneChar.getDELETE_CHAR());
-            // TODO обработка плюс-минус нужна - зачем? убрал! сделано удаление одного символа
         }
     };
 
     @SuppressLint("SetTextI18n")
     private void setExpressionInTextView(TextView expression, int number) {
+
+        // TODO не работает пока - ЗАРАБОТАЛО
+        if (expression.getText().toString().charAt(0) == '0' && expression.getText().length() == 1) {
+            expression.setText("");
+        }
+
         expression.setText(expression.getText() + String.format(Locale.getDefault(), "%d", number));
         mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
         resultText.setResultWindow(mainWindow.toString());
@@ -339,20 +351,34 @@ public class MainActivity extends AppCompatActivity {
     private void setExpressionInTextView(TextView expression, char number) {
 //        expression.setText(expression.getText() + String.format(Locale.getDefault(), "%c", number));
         if (number == clearButton.getCLEAR()) {
-            expression.setText("");
-            mainWindow.replace(0, mainWindow.length(), "");
+            expression.setText("0");
+            mainWindow.replace(0, mainWindow.length(), "0");
         } else if (number == deleteOneChar.getDELETE_CHAR()) {
-            expression.setText((String) ((String) expression.getText()).substring(0, expression.getText().length() - 1));
-            mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
-
+            if (expression.getText().length() == 0) {
+                expression.setText("0");
+                mainWindow.replace(0, mainWindow.length(), "0");
+            } else {
+                expression.setText((String) ((String) expression.getText()).substring(0, expression.getText().length() - 1));
+                if (expression.getText().length() == 0) {
+                    expression.setText("0");
+                    mainWindow.replace(0, mainWindow.length(), "0");
+                }
+                mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
+            }
         } else if (number == operationsButton.getEQUAL()) {
             expression.setText(new Calculate((String) expression.getText()).getNumberCalc());
             mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
         } else {
 //            expression.setText(new StringBuilder().append(expression.getText()).append(String.format(Locale.getDefault(), "%c", number)).toString());
+//            if (number == expression.getText().charAt(expression.getText().length()-1)) {
+            if (!Character.isDigit(expression.getText().charAt(expression.getText().length() - 1))) {
+//                expression.setText(expression.getText());
+                expression.setText((String) ((String) expression.getText()).substring(0, expression.getText().length() - 1));
+            }
             expression.setText(expression.getText() + String.format(Locale.getDefault(), "%c", number));
             mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
         }
         resultText.setResultWindow(mainWindow.toString());
     }
+
 }
