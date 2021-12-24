@@ -193,8 +193,25 @@ public class MainActivity extends AppCompatActivity {
 //                        ("Memory SAVE:/ Основное окно READ: " + memoryNumber + " / " + this.expression.getText()),
 //                        Toast.LENGTH_LONG
 //                ).show();
-            } else if(number.equals(memoryButton.getMEM_PLUS())){
+            } else if (number.equals(memoryButton.getMEM_PLUS())) {
+                setExpressionInTextView(this.expression, operationsButton.getEQUAL());
+                memoryNumber.replace(0, memoryNumber.length(), new Calculate(memoryNumber.toString() + operationsButton.getPLUS() + mainWindow.toString()).getNumberCalc());
+                resultText.setMemNumber(memoryNumber.toString());
+//                Toast.makeText(
+//                        MainActivity.this,
+//                        ("Memory Calc: " + memoryNumber),
+//                        Toast.LENGTH_LONG
+//                ).show();
 
+            } else if (number.equals(memoryButton.getMEM_MINUS())) {
+                setExpressionInTextView(this.expression, operationsButton.getEQUAL());
+                memoryNumber.replace(0, memoryNumber.length(), new Calculate(memoryNumber.toString() + operationsButton.getMINUS() + mainWindow.toString()).getNumberCalc());
+                resultText.setMemNumber(memoryNumber.toString());
+
+            } else if (number.equals(memoryButton.getMEM_MULTIPLY())) {
+                setExpressionInTextView(this.expression, operationsButton.getEQUAL());
+                memoryNumber.replace(0, memoryNumber.length(), new Calculate(memoryNumber.toString() + operationsButton.getMULTIPLY() + mainWindow.toString()).getNumberCalc());
+                resultText.setMemNumber(memoryNumber.toString());
             }
 // Завершение обработки кнопок памяти
 
