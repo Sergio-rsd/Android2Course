@@ -144,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    @SuppressLint("SetTextI18n")
     private void setMemoryInTextView(TextView expression, String number) {
         if (number.equals(memoryButton.getMEM_CLEAR())) {
             expression.setText("");
@@ -152,42 +153,50 @@ public class MainActivity extends AppCompatActivity {
         } else {
             // TODO обработка кнопок памяти
             if (number.equals(memoryButton.getMEM_READ())) {
-                mainWindow.replace(0, mainWindow.length(), mainWindow.toString() + memoryNumber);
-                Toast.makeText(
-                        MainActivity.this,
-//                    expression.getText(),
-//                    resultText.getResultWindow(),
-                        ("Memory READ: " + memoryNumber),
-                        Toast.LENGTH_LONG
-                ).show();
+                if (this.expression.getText().equals("0") || checkCalculate) {
+                    this.expression.setText(memoryNumber);
+                    mainWindow.replace(0, mainWindow.length(), mainWindow.toString() + memoryNumber);
+                    resultText.setResultWindow(mainWindow.toString());
+                }
+                if (!Character.isDigit(this.expression.getText().charAt(this.expression.getText().length() - 1))) {
+                    this.expression.setText(this.expression.getText() + String.format(Locale.getDefault(), "%s", memoryNumber));
+                    mainWindow.replace(0, mainWindow.length(), (String) this.expression.getText());
+                    resultText.setResultWindow(mainWindow.toString());
+//                    Toast.makeText(
+//                            MainActivity.this,
+////                    expression.getText(),
+////                    resultText.getResultWindow(),
+//                            ("Memory ADD to mainWin: " + (String) this.expression.getText()),
+//                            Toast.LENGTH_LONG
+//                    ).show();
+                }
+//                mainWindow.replace(0, mainWindow.length(), mainWindow.toString() + memoryNumber);
 
+//                Toast.makeText(
+//                        MainActivity.this,
+////                    expression.getText(),
+////                    resultText.getResultWindow(),
+//                        ("Memory READ: " + memoryNumber),
+//                        Toast.LENGTH_LONG
+//                ).show();
             } else if (number.equals(memoryButton.getMEM_SAVE())) {
                 memoryNumber.replace(0, memoryNumber.length(), new Calculate(mainWindow.toString()).getNumberCalc());
 //                String aa = mainWindow.toString();
 //                String aa = new Calculate(mainWindow.toString()).getNumberCalc();
 //                memoryNumber.replace(0, memoryNumber.length(), mainWindow.toString());
 //                setExpressionInTextView((TextView) this.expression.getText(), operationsButton.getEQUAL());
-//                setExpressionInTextView((TextView) mainWindow, operationsButton.getEQUAL());
                 this.expression.setText(memoryNumber);
+                setExpressionInTextView(this.expression, operationsButton.getEQUAL());
                 resultText.setMemNumber(memoryNumber.toString());
-
-                Toast.makeText(
-                        MainActivity.this,
-                        ("Memory SAVE:/ Основное окно READ: " + memoryNumber + " / " +this.expression.getText()),
-                        Toast.LENGTH_LONG
-                ).show();
-            }
-/*
-
-            if (number.equals(memoryButton.getMEM_SAVE())) {
-                memoryNumber.replace(0, memoryNumber.length(), new Calculate(mainWindow.toString()).getNumberCalc());
-            } else if (number.equals(memoryButton.getMEM_READ())) {
-
-                mainWindow.replace(0, mainWindow.length(), mainWindow.toString() + memoryNumber);
+//                Toast.makeText(
+//                        MainActivity.this,
+//                        ("Memory SAVE:/ Основное окно READ: " + memoryNumber + " / " + this.expression.getText()),
+//                        Toast.LENGTH_LONG
+//                ).show();
             } else if(number.equals(memoryButton.getMEM_PLUS())){
 
             }
-*/
+// Завершение обработки кнопок памяти
 
             expression.setText(number);
             memoryWindow.replace(0, memoryWindow.length(), number);
