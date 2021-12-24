@@ -24,12 +24,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView expression;
     private TextView memoryInfo;
     private boolean checkCalculate = false;
-//    private boolean checkCalculate;
-//    private StringBuilder mainWindow =new StringBuilder();
-//    private StringBuilder memoryWindow = new StringBuilder();
 
     private StringBuilder mainWindow;
     private StringBuilder memoryWindow;
+    private StringBuilder memoryNumber;
 
     public static final String RESULT = "RESULT";
     private Result resultText = new Result();
@@ -48,14 +46,19 @@ public class MainActivity extends AppCompatActivity {
         // хранить
         mainWindow = new StringBuilder();
         memoryWindow = new StringBuilder();
+        memoryNumber = new StringBuilder();
+
         expression = findViewById(R.id.place_result);
         memoryInfo = findViewById(R.id.place_memory);
         expression.setText("0");
+        mainWindow.append("0");
+        memoryNumber.append("0");
 
         if (savedInstanceState != null && savedInstanceState.containsKey(RESULT)) {
             resultText = savedInstanceState.getParcelable(RESULT);
             expression.setText(resultText.getResultWindow());
             memoryInfo.setText(resultText.getMemWindow());
+            memoryNumber.replace(0, memoryNumber.length(), resultText.getMemNumber());
             checkCalculate = resultText.isCheckResult();
 //            Toast.makeText(
 //                    MainActivity.this,
@@ -82,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         initMemoryButton();
     }
 
+    // TODO обработка memory
     // button of memory operations
     private void initMemoryButton() {
         MaterialButton buttonMemoryPlus = findViewById(R.id.button_m_plus);
@@ -98,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
 
         MaterialButton buttonMemorySave = findViewById(R.id.button_ms);
         buttonMemorySave.setOnClickListener(buttonMemorySaveClickListener);
+
+        MaterialButton buttonPercent = findViewById(R.id.button_percent);
+        buttonPercent.setOnClickListener(buttonMemoryMultiplyListener);
     }
 
     public View.OnClickListener buttonMemoryPlusClickListener = new View.OnClickListener() {
@@ -130,12 +137,58 @@ public class MainActivity extends AppCompatActivity {
             setMemoryInTextView(memoryInfo, memoryButton.getMEM_SAVE());
         }
     };
+    public View.OnClickListener buttonMemoryMultiplyListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            setMemoryInTextView(memoryInfo, memoryButton.getMEM_MULTIPLY());
+        }
+    };
 
     private void setMemoryInTextView(TextView expression, String number) {
         if (number.equals(memoryButton.getMEM_CLEAR())) {
             expression.setText("");
             memoryWindow.replace(0, memoryWindow.length(), "");
+            memoryNumber.replace(0, memoryNumber.length(), "0");
         } else {
+            // TODO обработка кнопок памяти
+            if (number.equals(memoryButton.getMEM_READ())) {
+                mainWindow.replace(0, mainWindow.length(), mainWindow.toString() + memoryNumber);
+                Toast.makeText(
+                        MainActivity.this,
+//                    expression.getText(),
+//                    resultText.getResultWindow(),
+                        ("Memory READ: " + memoryNumber),
+                        Toast.LENGTH_LONG
+                ).show();
+
+            } else if (number.equals(memoryButton.getMEM_SAVE())) {
+                memoryNumber.replace(0, memoryNumber.length(), new Calculate(mainWindow.toString()).getNumberCalc());
+//                String aa = mainWindow.toString();
+//                String aa = new Calculate(mainWindow.toString()).getNumberCalc();
+//                memoryNumber.replace(0, memoryNumber.length(), mainWindow.toString());
+//                setExpressionInTextView((TextView) this.expression.getText(), operationsButton.getEQUAL());
+//                setExpressionInTextView((TextView) mainWindow, operationsButton.getEQUAL());
+                this.expression.setText(memoryNumber);
+                resultText.setMemNumber(memoryNumber.toString());
+
+                Toast.makeText(
+                        MainActivity.this,
+                        ("Memory SAVE:/ Основное окно READ: " + memoryNumber + " / " +this.expression.getText()),
+                        Toast.LENGTH_LONG
+                ).show();
+            }
+/*
+
+            if (number.equals(memoryButton.getMEM_SAVE())) {
+                memoryNumber.replace(0, memoryNumber.length(), new Calculate(mainWindow.toString()).getNumberCalc());
+            } else if (number.equals(memoryButton.getMEM_READ())) {
+
+                mainWindow.replace(0, mainWindow.length(), mainWindow.toString() + memoryNumber);
+            } else if(number.equals(memoryButton.getMEM_PLUS())){
+
+            }
+*/
+
             expression.setText(number);
             memoryWindow.replace(0, memoryWindow.length(), number);
         }
@@ -161,10 +214,6 @@ public class MainActivity extends AppCompatActivity {
 
         MaterialButton buttonComma = findViewById(R.id.button_comma);
         buttonComma.setOnClickListener(buttonCommaClickListener);
-
-        MaterialButton buttonPercent = findViewById(R.id.button_percent);
-        buttonPercent.setOnClickListener(buttonPercentClickListener);
-
     }
 
     public View.OnClickListener buttonEqualClickListener = new View.OnClickListener() {
@@ -203,12 +252,7 @@ public class MainActivity extends AppCompatActivity {
             setExpressionInTextView(expression, operationsButton.getCOMMA());
         }
     };
-    public View.OnClickListener buttonPercentClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            setExpressionInTextView(expression, operationsButton.getPERCENT());
-        }
-    };
+
 
     // button of numbers
     private void initNumberButton() {
@@ -408,7 +452,8 @@ public class MainActivity extends AppCompatActivity {
 //            expression.setText(new StringBuilder().append(expression.getText()).append(String.format(Locale.getDefault(), "%c", number)).toString());
 //            if (number == expression.getText().charAt(expression.getText().length()-1)) {
             if (!Character.isDigit(expression.getText().charAt(expression.getText().length() - 1))) {
-                expression.setText((String) ((String) expression.getText()).substring(0, expression.getText().length() - 1));
+//                expression.setText((String) ((String) expression.getText()).substring(0, expression.getText().length() - 1));
+                expression.setText(((String) expression.getText()).substring(0, expression.getText().length() - 1));
             }
             expression.setText(expression.getText() + String.format(Locale.getDefault(), "%c", number));
             checkCalculate = false;
