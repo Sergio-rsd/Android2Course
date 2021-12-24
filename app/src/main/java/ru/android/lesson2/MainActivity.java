@@ -170,7 +170,6 @@ public class MainActivity extends AppCompatActivity {
 //                            Toast.LENGTH_LONG
 //                    ).show();
                 }
-//                mainWindow.replace(0, mainWindow.length(), mainWindow.toString() + memoryNumber);
 
 //                Toast.makeText(
 //                        MainActivity.this,
@@ -181,10 +180,6 @@ public class MainActivity extends AppCompatActivity {
 //                ).show();
             } else if (number.equals(memoryButton.getMEM_SAVE())) {
                 memoryNumber.replace(0, memoryNumber.length(), new Calculate(mainWindow.toString()).getNumberCalc());
-//                String aa = mainWindow.toString();
-//                String aa = new Calculate(mainWindow.toString()).getNumberCalc();
-//                memoryNumber.replace(0, memoryNumber.length(), mainWindow.toString());
-//                setExpressionInTextView((TextView) this.expression.getText(), operationsButton.getEQUAL());
                 this.expression.setText(memoryNumber);
                 setExpressionInTextView(this.expression, operationsButton.getEQUAL());
                 resultText.setMemNumber(memoryNumber.toString());
@@ -411,9 +406,6 @@ public class MainActivity extends AppCompatActivity {
         // проверка на начальный ноль.
         if ((expression.getText().toString().charAt(0) == '0' && expression.getText().length() == 1) || checkCalculate) {
             expression.setText("");
-
-//            checkCalculate = false;
-//            resultText.setCheckResult(checkCalculate);
         }
         if (checkCalculate) {
             expression.setText("");

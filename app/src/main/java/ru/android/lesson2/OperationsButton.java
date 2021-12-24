@@ -1,7 +1,7 @@
 package ru.android.lesson2;
 
 public class OperationsButton {
-    private final char DIVIDE = '/';
+    private final char DIVIDE = '÷';
     private final char MULTIPLY = '*';
     private final char MINUS = '-';
     private final char PLUS = '+';
