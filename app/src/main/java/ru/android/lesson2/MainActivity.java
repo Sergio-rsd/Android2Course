@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -28,10 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private StringBuilder mainWindow;
     private StringBuilder memoryWindow;
     private StringBuilder memoryNumber;
-
-    public static final String RESULT = "RESULT";
     private Result resultText = new Result();
-//    private Calculate calculate;
+    public static final String RESULT = "RESULT";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,9 +49,14 @@ public class MainActivity extends AppCompatActivity {
 
         expression = findViewById(R.id.place_result);
         memoryInfo = findViewById(R.id.place_memory);
+        // начальный экран
         expression.setText("0");
         mainWindow.append("0");
+        memoryWindow.append("");
         memoryNumber.append("0");
+        resultText.setResultWindow(expression.getText().toString());
+        resultText.setMemWindow(memoryWindow.toString());
+        resultText.setMemNumber(memoryNumber.toString());
 
         if (savedInstanceState != null && savedInstanceState.containsKey(RESULT)) {
             resultText = savedInstanceState.getParcelable(RESULT);
@@ -170,7 +174,6 @@ public class MainActivity extends AppCompatActivity {
 //                            Toast.LENGTH_LONG
 //                    ).show();
                 }
-
 //                Toast.makeText(
 //                        MainActivity.this,
 ////                    expression.getText(),
@@ -192,11 +195,6 @@ public class MainActivity extends AppCompatActivity {
                 setExpressionInTextView(this.expression, operationsButton.getEQUAL());
                 memoryNumber.replace(0, memoryNumber.length(), new Calculate(memoryNumber.toString() + operationsButton.getPLUS() + mainWindow.toString()).getNumberCalc());
                 resultText.setMemNumber(memoryNumber.toString());
-//                Toast.makeText(
-//                        MainActivity.this,
-//                        ("Memory Calc: " + memoryNumber),
-//                        Toast.LENGTH_LONG
-//                ).show();
 
             } else if (number.equals(memoryButton.getMEM_MINUS())) {
                 setExpressionInTextView(this.expression, operationsButton.getEQUAL());
@@ -213,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
             expression.setText(number);
             memoryWindow.replace(0, memoryWindow.length(), number);
         }
+        expression.setTextColor(Color.WHITE);
         resultText.setMemWindow(memoryWindow.toString());
     }
 
@@ -398,12 +397,7 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void setExpressionInTextView(TextView expression, int number) {
-//        Toast.makeText(
-//                MainActivity.this,
-//                (String) ("Info перед : " + resultText.isCheckResult()),
-//                Toast.LENGTH_LONG
-//        ).show();
-        // проверка на начальный ноль.
+        expression.setTextColor(Color.WHITE);
         if ((expression.getText().toString().charAt(0) == '0' && expression.getText().length() == 1) || checkCalculate) {
             expression.setText("");
         }
@@ -441,11 +435,13 @@ public class MainActivity extends AppCompatActivity {
     private void setExpressionInTextView(TextView expression, char number) {
 //        expression.setText(expression.getText() + String.format(Locale.getDefault(), "%c", number));
         if (number == clearButton.getCLEAR()) {
+            expression.setTextColor(Color.WHITE);
             expression.setText("0");
             checkCalculate = false;
             resultText.setCheckResult(checkCalculate);
             mainWindow.replace(0, mainWindow.length(), "0");
         } else if (number == deleteOneChar.getDELETE_CHAR()) {
+            expression.setTextColor(Color.WHITE);
             if (expression.getText().length() == 0) {
                 expression.setText("0");
                 checkCalculate = false;
@@ -465,7 +461,14 @@ public class MainActivity extends AppCompatActivity {
             expression.setText(new Calculate((String) expression.getText()).getNumberCalc());
             checkCalculate = true;
             resultText.setCheckResult(checkCalculate);
+            // TODO решить с цветом отрицательного числа
+/*
+            if (Double.parseDouble(expression.getText().toString()) < 0) {
+                expression.setTextColor(Color.RED);
+            }
+            */
             mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
+
         } else {
 //            expression.setText(new StringBuilder().append(expression.getText()).append(String.format(Locale.getDefault(), "%c", number)).toString());
 //            if (number == expression.getText().charAt(expression.getText().length()-1)) {
@@ -477,6 +480,7 @@ public class MainActivity extends AppCompatActivity {
             checkCalculate = false;
             resultText.setCheckResult(checkCalculate);
             mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
+
         }
         resultText.setResultWindow(mainWindow.toString());
     }

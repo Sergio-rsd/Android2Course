@@ -10,9 +10,8 @@ public class Result implements Parcelable {
 
     private String resultWindow;
     private String memWindow;
-    private boolean checkResult;
-
     private String memNumber;
+    private boolean checkResult;
 
     public Result() {
 
@@ -57,7 +56,6 @@ public class Result implements Parcelable {
     public void setResultWindow(String resultWindow) {
         this.resultWindow = resultWindow;
     }
-
     public String getMemWindow() {
         return memWindow;
     }
@@ -66,19 +64,19 @@ public class Result implements Parcelable {
         this.memWindow = memWindow;
     }
 
-    public boolean isCheckResult() {
-        return checkResult;
-    }
-
-    public void setCheckResult(boolean checkResult) {
-        this.checkResult = checkResult;
-    }
-
     public String getMemNumber() {
         return memNumber;
     }
 
     public void setMemNumber(String memNumber) {
         this.memNumber = memNumber;
+    }
+
+    public boolean isCheckResult() {
+        return checkResult;
+    }
+
+    public void setCheckResult(boolean checkResult) {
+        this.checkResult = checkResult;
     }
 }
