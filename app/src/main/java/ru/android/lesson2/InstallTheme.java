@@ -41,7 +41,7 @@ public class InstallTheme extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             Intent lightThemeIntent = new Intent(InstallTheme.this, MainActivity.class);
-            nameTheme = "Светлая";
+            nameTheme = "Light";
             lightThemeIntent.putExtra(THEME_TYPE, nameTheme);
             startActivity(lightThemeIntent);
         }
@@ -50,7 +50,7 @@ public class InstallTheme extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             Intent darkThemeIntent = new Intent(InstallTheme.this, MainActivity.class);
-            nameTheme = "Темная";
+            nameTheme = "Dark";
             darkThemeIntent.putExtra(THEME_TYPE, nameTheme);
             startActivity(darkThemeIntent);
         }

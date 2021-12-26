@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lesson2</string>
+    <string name="app_name">Calculate</string>
     <string name="button_mr">MR</string>
     <string name="button_ms">MS</string>
     <string name="button_mc">MC</string>

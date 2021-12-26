@@ -3,6 +3,7 @@ package ru.android.lesson2;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -37,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(InstallTheme.THEME_TYPE)) {
@@ -51,7 +51,13 @@ public class MainActivity extends AppCompatActivity {
 //                    Toast.LENGTH_LONG
 //            ).show();
         }
-
+        if ("Dark".equals(inputTheme)) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            setContentView(R.layout.activity_main);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            setContentView(R.layout.activity_main);
+        }
         numbersButton = new NumbersButton();
         operationsButton = new OperationsButton();
         clearButton = new ClearButton();
