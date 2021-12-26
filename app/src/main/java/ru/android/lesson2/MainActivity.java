@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.content.Intent;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
@@ -31,11 +32,25 @@ public class MainActivity extends AppCompatActivity {
     private StringBuilder memoryNumber;
     private Result resultText = new Result();
     public static final String RESULT = "RESULT";
+    private String inputTheme;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra(InstallTheme.THEME_TYPE)) {
+            inputTheme = intent.getStringExtra(InstallTheme.THEME_TYPE);
+//            Toast.makeText(
+//                    MainActivity.this,
+////                    expression.getText(),
+////                    resultText.getResultWindow(),
+////                    (String) ("Info: " + resultText.isCheckResult()),
+//                    inputTheme,
+//                    Toast.LENGTH_LONG
+//            ).show();
+        }
 
         numbersButton = new NumbersButton();
         operationsButton = new OperationsButton();
