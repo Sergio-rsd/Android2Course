@@ -12,10 +12,7 @@ import com.google.android.material.button.MaterialButton;
 public class InstallTheme extends AppCompatActivity {
     public static final String THEME_TYPE = "THEME_TYPE";
     public String nameTheme;
-    //    public static final String LIGHT_THEME = "LIGHT_THEME";
-    //    public static final String DARK_THEME = "DARK_THEME";
-//    public static final String nameLightTheme = "Светлая";
-//    public static final String nameDarkTheme = "Темная";
+
     private MaterialButton lightTheme;
     private MaterialButton darkTheme;
 
@@ -41,7 +38,7 @@ public class InstallTheme extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             Intent lightThemeIntent = new Intent(InstallTheme.this, MainActivity.class);
-            nameTheme = "Light";
+            nameTheme = "LIGHT_THEME";
             lightThemeIntent.putExtra(THEME_TYPE, nameTheme);
             startActivity(lightThemeIntent);
         }
@@ -50,7 +47,7 @@ public class InstallTheme extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             Intent darkThemeIntent = new Intent(InstallTheme.this, MainActivity.class);
-            nameTheme = "Dark";
+            nameTheme = "DARK_THEME";
             darkThemeIntent.putExtra(THEME_TYPE, nameTheme);
             startActivity(darkThemeIntent);
         }

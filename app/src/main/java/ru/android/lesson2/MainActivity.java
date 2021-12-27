@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private Result resultText = new Result();
     public static final String RESULT = "RESULT";
     private String inputTheme;
+    public static final String DARK_THEME ="DARK_THEME";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,22 +43,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(InstallTheme.THEME_TYPE)) {
             inputTheme = intent.getStringExtra(InstallTheme.THEME_TYPE);
-//            Toast.makeText(
-//                    MainActivity.this,
-////                    expression.getText(),
-////                    resultText.getResultWindow(),
-////                    (String) ("Info: " + resultText.isCheckResult()),
-//                    inputTheme,
-//                    Toast.LENGTH_LONG
-//            ).show();
         }
-        if ("Dark".equals(inputTheme)) {
+        if (DARK_THEME.equals(inputTheme)) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            setContentView(R.layout.activity_main);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            setContentView(R.layout.activity_main);
         }
+        setContentView(R.layout.activity_main);
         numbersButton = new NumbersButton();
         operationsButton = new OperationsButton();
         clearButton = new ClearButton();
