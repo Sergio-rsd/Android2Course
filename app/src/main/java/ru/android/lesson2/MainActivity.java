@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.content.Intent;
-import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private Result resultText = new Result();
     public static final String RESULT = "RESULT";
     private String inputTheme;
-    public static final String DARK_THEME ="DARK_THEME";
+    public static final String DARK_THEME = "DARK_THEME";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
         setContentView(R.layout.activity_main);
+
         numbersButton = new NumbersButton();
         operationsButton = new OperationsButton();
         clearButton = new ClearButton();
@@ -77,13 +77,7 @@ public class MainActivity extends AppCompatActivity {
             memoryInfo.setText(resultText.getMemWindow());
             memoryNumber.replace(0, memoryNumber.length(), resultText.getMemNumber());
             checkCalculate = resultText.isCheckResult();
-//            Toast.makeText(
-//                    MainActivity.this,
-////                    expression.getText(),
-////                    resultText.getResultWindow(),
-//                    (String) ("Info: " + resultText.isCheckResult()),
-//                    Toast.LENGTH_LONG
-//            ).show();
+
         }
         initView();
     }
@@ -102,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
         initMemoryButton();
     }
 
-    // TODO обработка memory
     // button of memory operations
     private void initMemoryButton() {
         MaterialButton buttonMemoryPlus = findViewById(R.id.button_m_plus);
@@ -446,7 +439,6 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void setExpressionInTextView(TextView expression, char number) {
-//        expression.setText(expression.getText() + String.format(Locale.getDefault(), "%c", number));
         if (number == clearButton.getCLEAR()) {
             expression.setTextColor(Color.WHITE);
             expression.setText("0");
