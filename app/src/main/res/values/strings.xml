@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lesson2</string>
+    <string name="app_name">Calculate</string>
     <string name="button_mr">MR</string>
     <string name="button_ms">MS</string>
     <string name="button_mc">MC</string>
@@ -22,6 +22,10 @@
     <string name="button_plus">+</string>
     <string name="button_equal">=</string>
     <string name="button_comma">.</string>
-<!--    <string name="button_plus_minus">±</string>-->
-    <string name="button_percent">%</string>
+    <!--    <string name="button_plus_minus">±</string>-->
+    <!--<string name="button_percent">%</string>-->
+    <string name="button_percent">M*</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="light_theme">Light Theme</string>
+    <string name="choosing_a_calculator_theme">CHOOSING A CALCULATOR THEME</string>
 </resources>

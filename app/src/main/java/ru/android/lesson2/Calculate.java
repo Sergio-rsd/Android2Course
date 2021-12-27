@@ -1,5 +1,7 @@
 package ru.android.lesson2;
 
+import android.widget.Toast;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -7,7 +9,6 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class Calculate {
-    //    private double numberCalc; // зачем?
 
     private String numberCalc;
 //    ExpressionParser n = new ExpressionParser();
@@ -18,18 +19,16 @@ public class Calculate {
 //    }
 
     public Calculate(String numberCalc) {
-//        numberCalc = numberCalc.concat("%n");
+        numberCalc = numberCalc.replace('÷', '/');
         this.numberCalc = numberCalc;
-
 //        ExpressionParser n = new ExpressionParser();
         List<String> expression = ExpressionParser.parse(this.numberCalc);
-        boolean flag = ExpressionParser.flag;
+        boolean flag = ExpressionParser.flag; // зачем обьявлять?
         this.numberCalc = String.valueOf(calc(expression));
 
     }
 
     public String getNumberCalc() {
-//        return calc(expression).toString();
         return numberCalc;
     }
 

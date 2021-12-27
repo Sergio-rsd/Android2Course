@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/margin_main_screen">
+    android:layout_margin="@dimen/margin_main_screen"
+    tools:context=".MainActivity">
 
     <ImageView
         android:layout_width="match_parent"
@@ -55,11 +56,9 @@
                 android:text="@string/button_m_minus" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_delete_char"
+                android:id="@+id/button_percent"
                 style="@style/NumberButtonStyle.Functional"
-                app:icon="@android:drawable/ic_input_delete"
-                app:iconGravity="textStart"
-                tools:ignore="SpeakableTextPresentCheck" />
+                android:text="@string/button_percent" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_m_clear"
@@ -85,9 +84,12 @@
                 android:text="@string/button_mc" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_percent"
+                android:id="@+id/button_delete_char"
                 style="@style/NumberButtonStyle.Functional"
-                android:text="@string/button_percent" />
+                app:icon="@android:drawable/ic_input_delete"
+                app:iconGravity="textStart"
+                tools:ignore="SpeakableTextPresentCheck" />
+
         </LinearLayout>
 
         <LinearLayout style="@style/ButtonsRowTitle.Number">

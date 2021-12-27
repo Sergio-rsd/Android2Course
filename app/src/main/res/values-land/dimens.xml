@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="button_size_number">43sp</dimen>
-    <dimen name="button_text_size">33sp</dimen>
-    <dimen name="button_text_height">77dp</dimen>
+    <dimen name="button_size_number">20sp</dimen>
+    <dimen name="button_text_size">20sp</dimen>
+    <dimen name="button_text_height">70dp</dimen>
     <dimen name="button_margin">2dp</dimen>
     <dimen name="margin_row">-2dp</dimen>
     <dimen name="margin_main_screen">1dp</dimen>
-    <dimen name="place_number">46sp</dimen>
-    <dimen name="memory_text">20sp</dimen>
+    <dimen name="place_number">38sp</dimen>
+    <dimen name="memory_text">18sp</dimen>
 </resources>

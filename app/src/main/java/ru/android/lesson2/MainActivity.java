@@ -3,11 +3,15 @@ package ru.android.lesson2;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.content.Intent;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -22,21 +26,30 @@ public class MainActivity extends AppCompatActivity {
     private MemoryButton memoryButton;
     private TextView expression;
     private TextView memoryInfo;
-//    private StringBuilder mainWindow =new StringBuilder();
-//    private StringBuilder memoryWindow = new StringBuilder();
+    private boolean checkCalculate = false;
 
     private StringBuilder mainWindow;
     private StringBuilder memoryWindow;
-
-    public static final String RESULT = "RESULT";
+    private StringBuilder memoryNumber;
     private Result resultText = new Result();
-//    private Calculate calculate;
+    public static final String RESULT = "RESULT";
+    private String inputTheme;
+    public static final String DARK_THEME ="DARK_THEME";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra(InstallTheme.THEME_TYPE)) {
+            inputTheme = intent.getStringExtra(InstallTheme.THEME_TYPE);
+        }
+        if (DARK_THEME.equals(inputTheme)) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+        setContentView(R.layout.activity_main);
         numbersButton = new NumbersButton();
         operationsButton = new OperationsButton();
         clearButton = new ClearButton();
@@ -45,19 +58,30 @@ public class MainActivity extends AppCompatActivity {
         // хранить
         mainWindow = new StringBuilder();
         memoryWindow = new StringBuilder();
-//        mainWindow.append(0);
+        memoryNumber = new StringBuilder();
+
         expression = findViewById(R.id.place_result);
         memoryInfo = findViewById(R.id.place_memory);
+        // начальный экран
         expression.setText("0");
+        mainWindow.append("0");
+        memoryWindow.append("");
+        memoryNumber.append("0");
+        resultText.setResultWindow(expression.getText().toString());
+        resultText.setMemWindow(memoryWindow.toString());
+        resultText.setMemNumber(memoryNumber.toString());
 
         if (savedInstanceState != null && savedInstanceState.containsKey(RESULT)) {
             resultText = savedInstanceState.getParcelable(RESULT);
             expression.setText(resultText.getResultWindow());
             memoryInfo.setText(resultText.getMemWindow());
+            memoryNumber.replace(0, memoryNumber.length(), resultText.getMemNumber());
+            checkCalculate = resultText.isCheckResult();
 //            Toast.makeText(
 //                    MainActivity.this,
 ////                    expression.getText(),
-//                    resultText.getResultWindow(),
+////                    resultText.getResultWindow(),
+//                    (String) ("Info: " + resultText.isCheckResult()),
 //                    Toast.LENGTH_LONG
 //            ).show();
         }
@@ -78,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         initMemoryButton();
     }
 
+    // TODO обработка memory
     // button of memory operations
     private void initMemoryButton() {
         MaterialButton buttonMemoryPlus = findViewById(R.id.button_m_plus);
@@ -94,6 +119,9 @@ public class MainActivity extends AppCompatActivity {
 
         MaterialButton buttonMemorySave = findViewById(R.id.button_ms);
         buttonMemorySave.setOnClickListener(buttonMemorySaveClickListener);
+
+        MaterialButton buttonPercent = findViewById(R.id.button_percent);
+        buttonPercent.setOnClickListener(buttonMemoryMultiplyListener);
     }
 
     public View.OnClickListener buttonMemoryPlusClickListener = new View.OnClickListener() {
@@ -126,15 +154,77 @@ public class MainActivity extends AppCompatActivity {
             setMemoryInTextView(memoryInfo, memoryButton.getMEM_SAVE());
         }
     };
+    public View.OnClickListener buttonMemoryMultiplyListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            setMemoryInTextView(memoryInfo, memoryButton.getMEM_MULTIPLY());
+        }
+    };
 
+    @SuppressLint("SetTextI18n")
     private void setMemoryInTextView(TextView expression, String number) {
         if (number.equals(memoryButton.getMEM_CLEAR())) {
             expression.setText("");
             memoryWindow.replace(0, memoryWindow.length(), "");
+            memoryNumber.replace(0, memoryNumber.length(), "0");
         } else {
+            // TODO обработка кнопок памяти
+            if (number.equals(memoryButton.getMEM_READ())) {
+                if (this.expression.getText().equals("0") || checkCalculate) {
+                    this.expression.setText(memoryNumber);
+                    mainWindow.replace(0, mainWindow.length(), mainWindow.toString() + memoryNumber);
+                    resultText.setResultWindow(mainWindow.toString());
+                }
+                if (!Character.isDigit(this.expression.getText().charAt(this.expression.getText().length() - 1))) {
+                    this.expression.setText(this.expression.getText() + String.format(Locale.getDefault(), "%s", memoryNumber));
+                    mainWindow.replace(0, mainWindow.length(), (String) this.expression.getText());
+                    resultText.setResultWindow(mainWindow.toString());
+//                    Toast.makeText(
+//                            MainActivity.this,
+////                    expression.getText(),
+////                    resultText.getResultWindow(),
+//                            ("Memory ADD to mainWin: " + (String) this.expression.getText()),
+//                            Toast.LENGTH_LONG
+//                    ).show();
+                }
+//                Toast.makeText(
+//                        MainActivity.this,
+////                    expression.getText(),
+////                    resultText.getResultWindow(),
+//                        ("Memory READ: " + memoryNumber),
+//                        Toast.LENGTH_LONG
+//                ).show();
+            } else if (number.equals(memoryButton.getMEM_SAVE())) {
+                memoryNumber.replace(0, memoryNumber.length(), new Calculate(mainWindow.toString()).getNumberCalc());
+                this.expression.setText(memoryNumber);
+                setExpressionInTextView(this.expression, operationsButton.getEQUAL());
+                resultText.setMemNumber(memoryNumber.toString());
+//                Toast.makeText(
+//                        MainActivity.this,
+//                        ("Memory SAVE:/ Основное окно READ: " + memoryNumber + " / " + this.expression.getText()),
+//                        Toast.LENGTH_LONG
+//                ).show();
+            } else if (number.equals(memoryButton.getMEM_PLUS())) {
+                setExpressionInTextView(this.expression, operationsButton.getEQUAL());
+                memoryNumber.replace(0, memoryNumber.length(), new Calculate(memoryNumber.toString() + operationsButton.getPLUS() + mainWindow.toString()).getNumberCalc());
+                resultText.setMemNumber(memoryNumber.toString());
+
+            } else if (number.equals(memoryButton.getMEM_MINUS())) {
+                setExpressionInTextView(this.expression, operationsButton.getEQUAL());
+                memoryNumber.replace(0, memoryNumber.length(), new Calculate(memoryNumber.toString() + operationsButton.getMINUS() + mainWindow.toString()).getNumberCalc());
+                resultText.setMemNumber(memoryNumber.toString());
+
+            } else if (number.equals(memoryButton.getMEM_MULTIPLY())) {
+                setExpressionInTextView(this.expression, operationsButton.getEQUAL());
+                memoryNumber.replace(0, memoryNumber.length(), new Calculate(memoryNumber.toString() + operationsButton.getMULTIPLY() + mainWindow.toString()).getNumberCalc());
+                resultText.setMemNumber(memoryNumber.toString());
+            }
+// Завершение обработки кнопок памяти
+
             expression.setText(number);
             memoryWindow.replace(0, memoryWindow.length(), number);
         }
+        expression.setTextColor(Color.WHITE);
         resultText.setMemWindow(memoryWindow.toString());
     }
 
@@ -157,10 +247,6 @@ public class MainActivity extends AppCompatActivity {
 
         MaterialButton buttonComma = findViewById(R.id.button_comma);
         buttonComma.setOnClickListener(buttonCommaClickListener);
-
-        MaterialButton buttonPercent = findViewById(R.id.button_percent);
-        buttonPercent.setOnClickListener(buttonPercentClickListener);
-
     }
 
     public View.OnClickListener buttonEqualClickListener = new View.OnClickListener() {
@@ -175,7 +261,6 @@ public class MainActivity extends AppCompatActivity {
             setExpressionInTextView(expression, operationsButton.getMINUS());
         }
     };
-
     public View.OnClickListener buttonPlusClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -200,12 +285,7 @@ public class MainActivity extends AppCompatActivity {
             setExpressionInTextView(expression, operationsButton.getCOMMA());
         }
     };
-    public View.OnClickListener buttonPercentClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            setExpressionInTextView(expression, operationsButton.getPERCENT());
-        }
-    };
+
 
     // button of numbers
     private void initNumberButton() {
@@ -330,12 +410,29 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void setExpressionInTextView(TextView expression, int number) {
-
-        // TODO не работает пока - ЗАРАБОТАЛО
-        if (expression.getText().toString().charAt(0) == '0' && expression.getText().length() == 1) {
+        expression.setTextColor(Color.WHITE);
+        if ((expression.getText().toString().charAt(0) == '0' && expression.getText().length() == 1) || checkCalculate) {
             expression.setText("");
         }
-
+        if (checkCalculate) {
+            expression.setText("");
+//            Toast.makeText(
+//                    MainActivity.this,
+//                    ("Текст после поворота: " + expression.getText()),
+////                    resultText.getResultWindow(),
+////                    (String) ("Info: " + resultText.isCheckResult()),
+//                    Toast.LENGTH_LONG
+//            ).show();
+        }
+        checkCalculate = false;
+        resultText.setCheckResult(checkCalculate);
+//        Toast.makeText(
+//                MainActivity.this,
+//                ("Текст: " + expression.getText()),
+////                    resultText.getResultWindow(),
+////                    (String) ("Info: " + resultText.isCheckResult()),
+//                Toast.LENGTH_LONG
+//        ).show();
         expression.setText(expression.getText() + String.format(Locale.getDefault(), "%d", number));
         mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
         resultText.setResultWindow(mainWindow.toString());
@@ -351,11 +448,17 @@ public class MainActivity extends AppCompatActivity {
     private void setExpressionInTextView(TextView expression, char number) {
 //        expression.setText(expression.getText() + String.format(Locale.getDefault(), "%c", number));
         if (number == clearButton.getCLEAR()) {
+            expression.setTextColor(Color.WHITE);
             expression.setText("0");
+            checkCalculate = false;
+            resultText.setCheckResult(checkCalculate);
             mainWindow.replace(0, mainWindow.length(), "0");
         } else if (number == deleteOneChar.getDELETE_CHAR()) {
+            expression.setTextColor(Color.WHITE);
             if (expression.getText().length() == 0) {
                 expression.setText("0");
+                checkCalculate = false;
+                resultText.setCheckResult(checkCalculate);
                 mainWindow.replace(0, mainWindow.length(), "0");
             } else {
                 expression.setText((String) ((String) expression.getText()).substring(0, expression.getText().length() - 1));
@@ -363,20 +466,34 @@ public class MainActivity extends AppCompatActivity {
                     expression.setText("0");
                     mainWindow.replace(0, mainWindow.length(), "0");
                 }
+                checkCalculate = false;
+                resultText.setCheckResult(checkCalculate);
                 mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
             }
         } else if (number == operationsButton.getEQUAL()) {
             expression.setText(new Calculate((String) expression.getText()).getNumberCalc());
+            checkCalculate = true;
+            resultText.setCheckResult(checkCalculate);
+            // TODO решить с цветом отрицательного числа
+/*
+            if (Double.parseDouble(expression.getText().toString()) < 0) {
+                expression.setTextColor(Color.RED);
+            }
+            */
             mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
+
         } else {
 //            expression.setText(new StringBuilder().append(expression.getText()).append(String.format(Locale.getDefault(), "%c", number)).toString());
 //            if (number == expression.getText().charAt(expression.getText().length()-1)) {
             if (!Character.isDigit(expression.getText().charAt(expression.getText().length() - 1))) {
-//                expression.setText(expression.getText());
-                expression.setText((String) ((String) expression.getText()).substring(0, expression.getText().length() - 1));
+//                expression.setText((String) ((String) expression.getText()).substring(0, expression.getText().length() - 1));
+                expression.setText(((String) expression.getText()).substring(0, expression.getText().length() - 1));
             }
             expression.setText(expression.getText() + String.format(Locale.getDefault(), "%c", number));
+            checkCalculate = false;
+            resultText.setCheckResult(checkCalculate);
             mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
+
         }
         resultText.setResultWindow(mainWindow.toString());
     }
