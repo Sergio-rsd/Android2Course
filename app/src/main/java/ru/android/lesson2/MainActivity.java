@@ -156,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void setMemoryInTextView(TextView expression, String number) {
+        expression.setTextColor(Color.WHITE);
         if (number.equals(memoryButton.getMEM_CLEAR())) {
             expression.setText("");
             memoryWindow.replace(0, memoryWindow.length(), "");
@@ -439,6 +440,7 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void setExpressionInTextView(TextView expression, char number) {
+        expression.setTextColor(Color.WHITE);
         if (number == clearButton.getCLEAR()) {
             expression.setTextColor(Color.WHITE);
             expression.setText("0");
@@ -467,11 +469,9 @@ public class MainActivity extends AppCompatActivity {
             checkCalculate = true;
             resultText.setCheckResult(checkCalculate);
             // TODO решить с цветом отрицательного числа
-/*
             if (Double.parseDouble(expression.getText().toString()) < 0) {
                 expression.setTextColor(Color.RED);
             }
-            */
             mainWindow.replace(0, mainWindow.length(), (String) expression.getText());
 
         } else {
