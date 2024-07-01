@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
             memoryWindow.replace(0, memoryWindow.length(), "");
             memoryNumber.replace(0, memoryNumber.length(), "0");
         } else {
-            // TODO обработка кнопок памяти
+            //  обработка кнопок памяти
             if (number.equals(memoryButton.getMEM_READ())) {
                 if (this.expression.getText().equals("0") || checkCalculate) {
                     this.expression.setText(memoryNumber);
@@ -173,13 +173,7 @@ public class MainActivity extends AppCompatActivity {
                     this.expression.setText(this.expression.getText() + String.format(Locale.getDefault(), "%s", memoryNumber));
                     mainWindow.replace(0, mainWindow.length(), (String) this.expression.getText());
                     resultText.setResultWindow(mainWindow.toString());
-//                    Toast.makeText(
-//                            MainActivity.this,
-////                    expression.getText(),
-////                    resultText.getResultWindow(),
-//                            ("Memory ADD to mainWin: " + (String) this.expression.getText()),
-//                            Toast.LENGTH_LONG
-//                    ).show();
+
                 }
 //                Toast.makeText(
 //                        MainActivity.this,
