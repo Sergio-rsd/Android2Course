@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "ru.android.lesson2"
-        minSdk 21
+        minSdk 27
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -26,6 +26,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     compileSdkVersion 34
+    namespace 'ru.android.lesson2'
 }
 
 dependencies {
